@@ -112,7 +112,7 @@ uint8_t GPIO_u8TogglePinValue(Port_t Port,Pin_t PinNum)
 	uint8_t Local_u8ErrorState = OK;
 	if((Port < INVALID_PORT) && (PinNum <INVALID_PIN))
 	{
-		GPIOPort[port]->ODR ^=(ODR_MASK<<PinNum);
+		GPIOPort[Port]->ODR ^= (ODR_MASK<<PinNum);
 	}
 	else
 	{
@@ -129,12 +129,12 @@ uint8_t GPIO_u8TogglePinValue(Port_t Port,Pin_t PinNum)
  *   @param[in]  PinNum: The pin number, get options @pin_t enum
  *   @retVal     PinVal: The output value, get options @PinVal_t enum
  */
-uint8_t GPIO_u8ReadPinValue(Port_t Port,Pin_t PinNum,PinVal_t* PinVal)
+uint8_t GPIO_u8ReadPinValue(Port_t Port,Pin_t PinNum,PinVal_t *PinVal)
 {
 	uint8_t Local_u8ErrorState = OK;
 	if((Port < INVALID_PORT) && (PinNum <INVALID_PIN))
 	{
-		*pinValue =(IDR_MASK&(GPIOPort[port]->IDR>>PinNum));
+		*PinVal =IDR_MASK &((GPIOPort[Port] ->IDR)>>PinNum);
 	}
 	else
 	{
